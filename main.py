@@ -1,25 +1,22 @@
 # punto 1
-from heroes import lista_heroes
+from pokemone import lista_pokemon
 from validaciones import *
 
-# punto 2. opcion 1 del menu:
+# punto 2. opcion 2 del menu:
 def obtener_datos()->list:
     '''
-    brief: crea y retorna una lista con los nombres de los campos de los heroes.
+    brief: crea y retorna una lista con los nombres de los campos de los pokemon.
     recibe: nada.
     retorna: una lista de strings.
     '''
     campos = [
         "Nombre: ",
-        "Identidad: ",
-        "Empresa: ",
+        "Tipo: ",
         "Altura: ",
         "Peso: ",
-        "Genero: ",
-        "Color de ojos: ",
-        "Color de pelo: ",
-        "Fuerza: ",
-        "Inteligencia: ",
+        "Nivel: ",
+        "Fuerza de ataque: ",
+        "Region: ",
         ]
     return campos
 
@@ -36,7 +33,7 @@ def mostrar_datos(lista: list) ->None:
             print(f"{datos[j]} {lista[i][j]}")
         print("---------------------------------", "\n")
 
-# punto 3. opcion 2 del menu:
+# punto 3. opcion 3 del menu:
 def agregar_dato(lista: list) -> None:
     
     '''
@@ -46,19 +43,13 @@ def agregar_dato(lista: list) -> None:
     '''
 
     nombre = pedir_texto(
-        "Ingrese nombre del heroe: ",
-        "ERROR: reingrese nombre del heroe: "
+        "Ingrese nombre del pokemon: ",
+        "ERROR: reingrese nombre del pokemon: "
     )
 
-    identidad = pedir_texto(
-        "Ingrese identidad del heroe: ",
-        "ERROR: reingrese identidad del heroe: "
-    )
-
-    empresa = pedir_opcion(
-        "Ingrese empresa (DC Comics o Marvel Comics): ",
-        "ERROR: reingrese empresa: ",
-        ["dc comics", "marvel comics"]
+    tipo = pedir_texto(
+        "Ingrese tipo del pokemon: ",
+        "ERROR: reingrese tipo del pokemon: "
     )
 
     altura = pedir_float_positivo(
@@ -71,49 +62,40 @@ def agregar_dato(lista: list) -> None:
         "ERROR: reingrese peso: "
     )
 
-    genero = pedir_opcion(
-        "Ingrese genero (m/f/nb): ",
-        "ERROR: reingrese genero (m/f/nb): ",
-        ["m", "f", "nb"]
-    )
-
-    color_ojos = pedir_texto(
-        "Ingrese color de ojos: ",
-        "ERROR: reingrese color de ojos: "
-    )
-
-    color_pelo = pedir_texto(
-        "Ingrese color de pelo: ",
-        "ERROR: reingrese color de pelo: "
-    )
-
-    fuerza = pedir_entero_rango(
-        "Ingrese fuerza (1-100): ",
-        "ERROR: reingrese fuerza (1-100): ",
+    nivel = pedir_entero_rango(
+        "Ingrese nivel (1-100): ",
+        "ERROR: reingrese nivel (1-100): ",
         1,
         100
     )
 
-    inteligencia = pedir_opcion(
-        "Ingrese inteligencia (low, average, good, high, genius): ",
-        "ERROR: reingrese inteligencia (low, average, good, high, genius): ",
-        ["low", "average", "good", "high", "genius"]
+    fuerza = pedir_entero_rango(
+        "Ingrese fuerza (1-255): ",
+        "ERROR: reingrese fuerza (1-255): ",
+        1,
+        255
+    )
+
+    region = pedir_opcion(
+        "Ingrese region (johto/kanto/sinnoh/hoenn): ",
+        "ERROR: reingrese region (johto/kanto/sinnoh/hoenn): ",
+        ["johto", "kanto", "sinnoh", "hoenn"]
     )
 
     nuevo_dato = [nombre, 
-                identidad, 
-                empresa, 
+                tipo, 
                 altura, 
                 peso, 
-                genero, 
-                color_ojos, 
-                color_pelo, 
+                nivel, 
                 fuerza, 
-                inteligencia]
+                region]
 
     lista.append(nuevo_dato)
 
-# punto 4. opcion 3 del menu:
+    print("\n","Pokemon agregado correctamente:")
+    mostrar_datos([nuevo_dato])
+
+# punto 4. opcion 4 del menu:
 def eliminar_dato (lista: list) ->None:
     '''
     brief: pide un dato por nombre al usuario para eliminarlo de una lista de listas.
@@ -122,8 +104,8 @@ def eliminar_dato (lista: list) ->None:
     '''
     
     nombre = pedir_texto(
-        "Ingrese nombre del heroe: ",
-        "ERROR: reingrese nombre del heroe: "
+        "Ingrese nombre del pokemon: ",
+        "ERROR: reingrese nombre del pokemon: "
     )
     flag = False
 
@@ -143,31 +125,31 @@ def eliminar_dato (lista: list) ->None:
 
             if pregunta == "si":
                 lista.pop(i)
-                print("dato eliminado")
+                print("\n","dato eliminado")
                 
             else:
-                print("dato no eliminado")
+                print("\n","dato no eliminado")
 
             break
 
     if flag == False:
-        print("dato no encontrado")
+        print("\n","dato no encontrado")
 
-# punto 5. opcion 4 del menu:
-def ordenar_menor_a_mayor(lista:list, indice: int)->None:
+# punto 5. opcion 5 del menu:
+def ordenar_mayor_a_menor(lista:list, indice: int)->None:
     '''
-    brief: compara las listas de una lista de listas para ordenarlas menor a mayor.
+    brief: compara las listas de una lista de listas para ordenarlas de mayor a menor.
     recibe: una lista para comparar.
     retorna: nada.
     '''
     for i in range(len(lista)-1):
         for j in range(i+1, len(lista)):
-            if lista[i][indice]>lista[j][indice]:
+            if lista[i][indice]<lista[j][indice]:
                 aux = lista[i]
                 lista[i] = lista[j]
                 lista[j] = aux
 
-# puntos 6, 7 y 8. opciones 5, 6 y 7 del menu:
+# puntos 6, 7 y 8. opciones 6, 7 y 8 del menu:
 def buscar_dato (lista:list, indice: int, buscar_maximo: bool)->list:
     '''
     brief: busca un dato maximo o minimo dentro de una lista de listas.

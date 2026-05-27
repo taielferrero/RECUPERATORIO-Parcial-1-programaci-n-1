@@ -68,7 +68,7 @@ def pedir_opcion(
         for i in range(len(opciones)):
 
             if dato == opciones[i]:
-                Flag = True
+                flag = True
 
         if flag == False:
             dato = input(error).lower()
