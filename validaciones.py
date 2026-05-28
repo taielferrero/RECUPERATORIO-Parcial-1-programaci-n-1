@@ -12,6 +12,16 @@ def pedir_texto(mensaje: str, error: str) -> str:
 
     return dato
 
+def es_entero(dato: str) -> bool:
+
+    valido = True
+
+    for i in range(len(dato)):
+
+        if dato[i] < "0" or dato[i] > "9":
+            valido = False
+
+    return valido
 
 def pedir_float_positivo(mensaje: str, error: str) -> float:
     '''
@@ -20,12 +30,13 @@ def pedir_float_positivo(mensaje: str, error: str) -> float:
     retorna: un float.
     '''
 
-    numero = float(input(mensaje))
+    dato = input(mensaje)
 
-    while numero <= 0:
-        numero = float(input(error))
+    while es_entero(dato) == False or float(dato) <= 0:
+        dato = input(error)
 
-    return numero
+    return float(dato)
+
 
 
 def pedir_entero_rango(
@@ -40,12 +51,12 @@ def pedir_entero_rango(
     retorna: un entero.
     '''
 
-    numero = int(input(mensaje))
+    dato = input(mensaje)
 
-    while numero < minimo or numero > maximo:
-        numero = int(input(error))
+    while es_entero(dato) == False or int(dato) < minimo or int(dato) > maximo:
+        dato = input(error)
 
-    return numero
+    return int(dato)
 
 
 def pedir_opcion(
