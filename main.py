@@ -159,7 +159,9 @@ def buscar_dato (lista:list, indice: int, buscar_maximo: bool)->list:
         - un booleano para decidir si busca maximo o minimo
     retorna: la lista del dato encontrado.
     '''
-    
+    if len(lista) == 0:
+        return []
+
     dato_encontrado = lista[0]
     
     for i in range(1, len(lista)):

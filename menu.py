@@ -59,20 +59,22 @@ while opcion != 9:
                 mostrar_datos(pokemones_cargados)
 
         case 6:
+            lista_agua = []
+
             if pokemones_cargados == []:
                 print("Primero debe importar la lista")
-            else:
-                lista_agua = []
 
-            for i in range(len(pokemones_cargados)):
-                if pokemones_cargados[i][1].lower() == "agua":
-                    lista_agua.append(pokemones_cargados[i])
-
-            if lista_agua == []:
-                print("No hay pokemones de tipo agua")
             else:
-                resultado = buscar_dato(lista_agua, 3, True)
-                mostrar_datos([resultado])
+                for pokemon in pokemones_cargados:
+
+                    if pokemon[1] == "Agua":
+                        lista_agua.append(pokemon)
+
+                if lista_agua == []:
+                    print("No hay pokemones de agua")
+
+                else:
+                    mostrar_datos(lista_agua)
 
         case 7:
             if pokemones_cargados == []:
